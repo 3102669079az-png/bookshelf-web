@@ -40,4 +40,11 @@ public class BookDao {
         book.setId(rs.getLong("id"));
         return book;
     }
+
+    public Book findById(long id){
+        String sql = "SELECT id, name, type, price, pages, file_size FROM book WHERE id = ?";
+        List<Book> list = jdbc.query(sql,(rs, rowNum) -> toBook(rs), id);
+        return list.isEmpty() ? null : list.get(0);
+
+    }
 }
