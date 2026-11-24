@@ -1,0 +1,16 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+.idea/
+*.iml
+*.iws
+*.ipr
+
+.DS_Store
+
+# 本地运行日志，不属于代码
+*.log
+run.log
+
+# IDE 生成
+out/
