@@ -47,4 +47,9 @@ public class BookDao {
         return list.isEmpty() ? null : list.get(0);
 
     }
+
+    public List<Book> findByType(String type) {
+        String sql = "SELECT id, name, type, price, pages, file_size FROM book WHERE type = ? ORDER BY id";
+        return jdbc.query(sql, (rs, rowNum) -> toBook(rs), type);
+    }
 }
