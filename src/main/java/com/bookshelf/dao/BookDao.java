@@ -6,6 +6,7 @@ import com.bookshelf.model.PaperBook;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -51,5 +52,9 @@ public class BookDao {
     public List<Book> findByType(String type) {
         String sql = "SELECT id, name, type, price, pages, file_size FROM book WHERE type = ? ORDER BY id";
         return jdbc.query(sql, (rs, rowNum) -> toBook(rs), type);
+    }
+    public int insert(String name, String type, BigDecimal price,int pages,Integer fileSize){
+        String sql = "INSERT INTO book (name, type, price, pages, file_size) VALUES (?, ?, ?, ?, ?)";
+        return jdbc.update(sql,name,type,price,pages,fileSize);
     }
 }

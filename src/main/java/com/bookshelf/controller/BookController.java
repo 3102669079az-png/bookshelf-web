@@ -3,10 +3,7 @@ package com.bookshelf.controller;
 import com.bookshelf.dao.BookDao;
 import com.bookshelf.model.Book;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +32,20 @@ public class BookController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(book);
+    }
+
+    @PostMapping("/books")
+    public ResponseEntity<Void> addBook(@RequestBody BookRequest req){
+        int rows = bookDao.insert(
+                req.getName(),
+                req.getType(),
+                req.getPrice(),
+                req.getPages(),
+                req.getFileSize()
+        );
+        if (rows == 0){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.status(201).build();
     }
 }
