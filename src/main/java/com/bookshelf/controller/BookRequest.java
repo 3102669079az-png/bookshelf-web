@@ -17,7 +17,7 @@ public class BookRequest {
     @DecimalMin(value = "0.00", message = "价格不能为负")
     private BigDecimal price;
 
-    @Min(value = 1, message = "页数至少为一")
+    @Min(value = 1, message = "页数至少为 1")
     private int pages;
 
     @Min(value = 1,message = "文件大小至少为 1MB")
