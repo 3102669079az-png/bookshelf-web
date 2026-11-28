@@ -2,6 +2,7 @@ package com.bookshelf.controller;
 
 import com.bookshelf.dao.BookDao;
 import com.bookshelf.model.Book;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public ResponseEntity<Void> addBook(@RequestBody BookRequest req){
+    public ResponseEntity<Void> addBook(@Valid @RequestBody BookRequest req){
         int rows = bookDao.insert(
                 req.getName(),
                 req.getType(),
